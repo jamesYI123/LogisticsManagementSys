@@ -11,7 +11,8 @@
 <body>
 <div id="user_register" class="container">
     <el-card class="register_card">
-        <el-form :model="register_form" ref="register_from" class="form" label-width="0px" :rules="register_rules" status-icon>
+        <el-form :model="register_form" ref="register_from" class="form" label-width="0px" :rules="register_rules"
+                 status-icon>
             <el-form-item class="header">
                 <svg t="1608088953057" class="icon" viewBox="0 0 1024 1024" version="1.1"
                      xmlns="http://www.w3.org/2000/svg" p-id="7787" data-spm-anchor-id="a313x.7781069.0.i3" width="200"
@@ -42,10 +43,12 @@
         </el-form>
     </el-card>
 </div>
-</body>
 
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<script src="{{ url_for('static', filename='src/js/base64.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="{{ url_for('static', filename='users/js/register.js') }}"></script>
+</body>
 </html>

@@ -2,9 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>放心递·您贴心的快递管家</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/theme.png') }}">
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='users/css/index.css') }}">
 </head>
 <body>
+<el-container id="app" class="container">
+    <el-header class="header">
+        <div class="title">
+            <svg t="1608088953057" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg" p-id="7787" data-spm-anchor-id="a313x.7781069.0.i3" width="200"
+                 height="200">
+                <path d="M512 1024a512 512 0 1 1 512-512 512 512 0 0 1-512 512zM204.8 663.098514s4.388571 32.709486 14.511543 43.008a164.161829 164.161829 0 0 0 28.862171 21.035886l207.316115 57.724343a61.264457 61.264457 0 0 0 23.405714 3.203657 9.172114 9.172114 0 0 0 3.437714-9.537829V439.793371L204.8 362.554514v300.544z m0-331.8784l298.1888 82.183315 117.3504-32.329143-299.549257-82.563657z m314.719086-79.520914a119.442286 119.442286 0 0 0-16.384-2.925714 121.490286 121.490286 0 0 0-16.822857 3.189028l-86.952229 24.429715 300.500114 82.812342 101.566172-27.984457z m282.9312 379.845486V362.554514h-0.087772l-88.020114 24.4736v130.530743l-58.031543 16.003657v-130.369828l-132.534857 36.893257v310.842514a131.101257 131.101257 0 0 0 3.072 36.673829c3.8912 5.646629 23.186286-2.282057 23.186286-2.282057l186.294857-51.843658a155.384686 155.384686 0 0 0 53.774628-25.234285c14.467657-14.716343 12.346514-76.6976 12.346515-76.6976z"
+                      fill="#1A8EFF" p-id="7788"></path>
+            </svg>
+            <p class="header_title">放心递·您贴心的快递管家</p>
+        </div>
+        <div class="user_info">
+            <el-dropdown @command="handle_command">
+                <i class="el-icon-setting"></i>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="1">修改密码</el-dropdown-item>
+                    <el-dropdown-item command="2">注销登录</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <span v-text="'欢迎您，'+login_user.name"></span>
+        </div>
+    </el-header>
+    <el-container height="70%">
+        <el-aside class="side">
+            <el-menu
+                    :default-active="default_active"
+                    class="menu el-menu-vertical-demo"
+                    @select="handle_select"
+                    background-color="#545c64"
+                    text-color="#fff"
+                    active-text-color="#ffd04b">
+                <el-menu-item index="1">
+                    <i class="el-icon-menu"></i>
+                    <span slot="title">地址管理</span>
+                </el-menu-item>
+                <el-submenu index="2">
+                    <template slot="title">
+                        <i class="el-icon-document"></i>
+                        <span>订单管理</span>
+                    </template>
+                    <el-menu-item-group>
+                        <el-menu-item index="2-1">所有订单</el-menu-item>
+                        <el-menu-item index="2-2">待收货</el-menu-item>
+                        <el-menu-item index="2-3">收获站点</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+            </el-menu>
+        </el-aside>
+        <el-main class="main">
+            <div id="address_manage">
+                这里是地址管理模块
+            </div>
+            <div id="all_order">
+                这里是所有订单管理模块
+            </div>
+            <div id="tobe_received">
+                这里是待收货模块
+            </div>
+            <div id="map_orders">
+                这里是收获站点模块
+            </div>
+        </el-main>
+    </el-container>
+</el-container>
 
+<script src="{{ url_for('static', filename='src/js/base64.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ url_for('static', filename='users/js/index.js') }}"></script>
 </body>
 </html>
