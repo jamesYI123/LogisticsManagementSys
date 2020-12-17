@@ -25,15 +25,15 @@ url: /api/user/register
 附带json：
 		原始数据：
 		{
-				“username”:“chengfenggui”,
-				“keyword”:“123456”,
-				“name”:“钟源”
+				"username":"chengfenggui",
+				"keyword":"123456",
+				"name":"钟源"
 		}
 		实际传送数据：
 		{
-				“username”:“Y2hlbmdmZW5nZ3Vp“,
-				”keyword“:”MTIzNDU2”,
-				“name”:“6ZKf5rqQ”
+				"username":"Y2hlbmdmZW5nZ3Vp",
+				"keyword":"MTIzNDU2",
+				"name":"6ZKf5rqQ"
 		}
 		
 回送：
@@ -68,13 +68,13 @@ url: /api/user/login
 附带json：
 		原始数据：
 		{
-				“username”:“chengfenggui”,
-				“keyword”:“123456”,
+				"username":"chengfenggui",
+				"keyword":"123456",
 		}
 		实际传送数据：
 		{
-				“username”:“Y2hlbmdmZW5nZ3Vp“,
-				”keyword“:”MTIzNDU2”,
+				"username":"Y2hlbmdmZW5nZ3Vp",
+				"keyword":"MTIzNDU2",
 		}
 		
 回送：
@@ -200,7 +200,7 @@ url:/api/user/address/delete?id=1
 附带json：无
 回送：
 		{
-				ifSuccess:true
+				"ifSuccess":true
 		}
 ```
 
