@@ -5,7 +5,11 @@ let app = new Vue({
         login_user: {
             name: "钟源",
             id: ""
-        }
+        },
+        all_address: [],
+        all_orders: [],
+        tobereceived_orders: [],
+        search_keyword:'',
     },
     methods: {
         hideAll() {
@@ -40,11 +44,17 @@ let app = new Vue({
                 case("1"):
                     break;
                 case("2"):
-                    self.location="/users/login";
+                    self.location = "/users/login";
                     break;
                 default:
                     break;
             }
+        },
+        addAddress(){
+
+        },
+        queryAddress(){
+
         }
     }
 });

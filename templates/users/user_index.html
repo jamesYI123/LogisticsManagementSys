@@ -28,18 +28,19 @@
                     <el-dropdown-item command="2">注销登录</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <span v-text="'欢迎您，'+login_user.name"></span>
+            <span class='welcome_txt' v-text="'欢迎您，'+login_user.name"></span>
+            <el-avatar :size="40"
+                       src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+                       class="evatar"></el-avatar>
         </div>
     </el-header>
+    <div class="divider"></div>
     <el-container height="70%">
         <el-aside class="side">
             <el-menu
                     :default-active="default_active"
                     class="menu el-menu-vertical-demo"
-                    @select="handle_select"
-                    background-color="#545c64"
-                    text-color="#fff"
-                    active-text-color="#ffd04b">
+                    @select="handle_select">
                 <el-menu-item index="1">
                     <i class="el-icon-menu"></i>
                     <span slot="title">地址管理</span>
@@ -51,15 +52,86 @@
                     </template>
                     <el-menu-item-group>
                         <el-menu-item index="2-1">所有订单</el-menu-item>
-                        <el-menu-item index="2-2">待收货</el-menu-item>
-                        <el-menu-item index="2-3">收获站点</el-menu-item>
+                        <el-menu-item index="2-2">
+                            待收货订单
+                            <el-tag :key="tobereceived_orders.length"
+                                    type="danger"
+                                    effect="dark"
+                                    size="small"
+                                    v-text="tobereceived_orders.length"
+                                    style="margin-left: 10px">
+                            </el-tag>
+                        </el-menu-item>
+                        <el-menu-item index="2-3">收货站点</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
             </el-menu>
         </el-aside>
         <el-main class="main">
             <div id="address_manage">
-                这里是地址管理模块
+                <p class="main_header">地址管理</p>
+                <el-row class="search_row">
+                    <el-col :xs="24" :md="12">
+                        <el-input placeholder="请输入条件" v-model="search_keyword" class="input-with-select">
+                            <el-button slot="append" icon="el-icon-search" @click="queryAddress()"></el-button>
+                        </el-input>
+                    </el-col>
+                    <el-col class="address_search_btn" :xs="24" :md="12" v-if="true">
+                        <el-button-group style="margin-left: 40px">
+                            <el-button @click="addAddress()" icon="el-icon-circle-plus-outline"></el-button>
+                            <el-button @click="refreshAddress()" icon="el-icon-refresh-left"></el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+                <el-table
+                        :data="all_address"
+                        class="content-table"
+                        :fit="true"
+                        :show-header="true"
+                        height="470">
+                    <el-table-column
+                            fixed
+                            prop="id"
+                            label="地址ID"
+                            width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="province"
+                            label="省"
+                            width="150">
+                    </el-table-column>
+                    <el-table-column
+                            prop="city"
+                            label="市"
+                            width="150">
+                    </el-table-column>
+                    <el-table-column
+                            prop="addressDetail"
+                            label="详细地址"
+                            width="250">
+                    </el-table-column>
+                    <el-table-column
+                            prop="phoneNum"
+                            label="电话"
+                            width="150">
+                    </el-table-column>
+                    <el-table-column prop="isComplete" label="类别">
+                        <template slot-scope="scope">
+                            <el-tag v-show="scope.row.isComplete" style="color: green;">已完成</el-tag>
+                            <el-tag v-show="!scope.row.isComplete">未完成</el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="操作" fixed="right" width="200px">
+                        <template slot-scope="scope">
+                            <el-button mc-type="column-el-button" size="mini" type="primary"
+                                       @click="showEdit(scope.row)">编辑
+                            </el-button>
+                            <el-button mc-type="column-el-button" size="mini" type="danger"
+                                       @click="deleteTodo(scope.row)">删除
+                            </el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
             </div>
             <div id="all_order">
                 这里是所有订单管理模块
