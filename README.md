@@ -2,9 +2,17 @@
 
 
 
-## 用户部分
+## Done
 
-### 登录部分
+### 用户部分
+
+
+
+## Todo
+
+### 用户部分
+
+#### 登录部分
 
 ##### 用户注册
 
@@ -20,7 +28,7 @@ url：/api/user/register
 
 示例：
 
-```
+```json
 url: /api/user/register
 附带json：
 		原始数据：
@@ -63,7 +71,7 @@ url：/api/user/login
 
 示例：
 
-```
+```json
 url: /api/user/login
 附带json：
 		原始数据：
@@ -93,7 +101,7 @@ url: /api/user/login
 
 
 
-### 地址管理
+#### 地址管理
 
 ##### 查询所有地址
 
@@ -107,7 +115,7 @@ url：/api/user/address/queryall
 
 示例：
 
-```
+```json
 url：/api/user/address/queryall?username="Y2hlbmdmZW5nZ3Vp"
 附带json：无
 回送：
@@ -142,7 +150,7 @@ url：/api/user/address/query
 
 示例：
 
-```
+```json
 url:/api/user/address/query?search_keyword=武汉大学
 附带json：无
 回送：如前
@@ -162,7 +170,7 @@ url：/api/user/address/add
 
 示例：
 
-```
+```json
 url:/api/user/address/add
 附带json：
 		{
@@ -195,7 +203,7 @@ url：/api/user/address/delete
 
 示例
 
-```
+```json
 url:/api/user/address/delete?id=1
 附带json：无
 回送：
@@ -218,7 +226,7 @@ url：/api/user/address/edit
 
 示例
 
-```
+```json
 url:/api/user/address/edit
 附带json：
 		{
