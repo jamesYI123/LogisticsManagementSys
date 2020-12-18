@@ -1,7 +1,7 @@
 import base64
 import utils
 
-u = 'chengfenggui'
+u = '123456'
 encode = utils.base64encode(u)
 print(encode)
 print(utils.base64decode(encode))

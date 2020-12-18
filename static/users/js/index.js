@@ -1,3 +1,7 @@
+Vue.use(VueBaiduMap.default, {
+    ak: 'MTMdfHzZv4SVWqauWpmqOwKjUEysvKpd'
+});
+
 let app = new Vue({
     el: "#app",
     data: {
@@ -6,10 +10,39 @@ let app = new Vue({
             name: "钟源",
             id: ""
         },
-        all_address: [],
+        address: {
+            all: [],
+            current: {},
+            temporal_coor: {},  // 选择的经纬度暂存于此
+            search_keyword: '',
+            map: 0,
+            edit_mode: false,
+            mapInfo: {
+                center: {lng: 114.372042, lat: 30.544861},
+                zoom: 16
+            },
+            addVisible: false,
+            mapVisible: false,
+            rules: {
+                province: [
+                    {required: true, message: '请输入省份', trigger: 'change'},
+                ],
+                city: [
+                    {required: true, message: '请输入市区', trigger: 'change'},
+                ],
+                addressDetail: [
+                    {required: true, message: '请输入详细地址', trigger: 'change'},
+                ],
+                phoneNum: [
+                    {required: true, message: '请输入联系方式', trigger: 'change'},
+                ],
+            }
+        },
+
         all_orders: [],
         tobereceived_orders: [],
-        search_keyword:'',
+
+
     },
     methods: {
         hideAll() {
@@ -38,6 +71,7 @@ let app = new Vue({
                     break;
             }
         },
+        // 用户旁设置键对应方法
         handle_command(command) {
             console.log(command);
             switch (command) {
@@ -50,13 +84,30 @@ let app = new Vue({
                     break;
             }
         },
-        addAddress(){
-
+        address_showMap() {
+            this.address.mapVisible = true;
         },
-        queryAddress(){
+        // 地图初始化时调用
+        address_mapHandler({BMap, map}) {
+            this.address.map = map;   //将map变量存储在全局
+        },
+        // 地图坐标选取
+        address_pointPick(e) {
+            this.address.map.clearOverlays();
+            var myMarker = new BMap.Marker(new BMap.Point(e.point.lng, e.point.lat));
+            this.address.map.addOverlay(myMarker);
+            this.address.temporal_coor = {addressLon: e.point.lng, addressLat: e.point.lat};
+        },
+        addAddress() {
+            this.address.current = {id: this.address.all.length + 1};
+            this.address.edit_mode = false;
+            this.address.addVisible = true;
+        },
+        queryAddress() {
 
         }
     }
 });
 
 app.handle_select(app.default_active, "");
+

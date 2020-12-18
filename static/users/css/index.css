@@ -87,3 +87,8 @@ html, body {
     float: right;
     margin-top: -8px;
 }
+
+.form_map {
+    height: 400px;
+    width: 100%
+}
