@@ -28,33 +28,40 @@ url：/api/user/register
 
 示例：
 
+- url: /api/user/register
+
+- 附带json：
+
 ```json
-url: /api/user/register
-附带json：
-		原始数据：
-		{
-				"username":"chengfenggui",
-				"keyword":"123456",
-				"name":"钟源"
-		}
-		实际传送数据：
-		{
-				"username":"Y2hlbmdmZW5nZ3Vp",
-				"keyword":"MTIzNDU2",
-				"name":"6ZKf5rqQ"
-		}
-		
-回送：
-		正常：
-		{
-				"ifSucess":true,
-				"ifExist":false
-		}
-		用户名已存在：
-		{
-				"ifSucess":false,
-				"ifExist":true
-		}
+// 原始数据
+{
+		"username":"chengfenggui",
+		"keyword":"123456",
+		"name":"钟源"
+}
+
+//  实际传送
+{
+		"username":"Y2hlbmdmZW5nZ3Vp",
+		"keyword":"MTIzNDU2",
+		"name":"6ZKf5rqQ"
+}
+```
+
+- 回送：
+
+```json
+//  正常状态
+{
+		"ifSucess":true,
+    "ifExist":false
+}
+
+//  用户名已存在
+{
+    "ifSucess":false,
+    "ifExist":true
+}
 ```
 
 
@@ -71,35 +78,39 @@ url：/api/user/login
 
 示例：
 
+- url: /api/user/login
+- 附带json:
+
 ```json
-url: /api/user/login
-附带json：
-		原始数据：
-		{
-				"username":"chengfenggui",
-				"keyword":"123456",
-		}
-		实际传送数据：
-		{
-				"username":"Y2hlbmdmZW5nZ3Vp",
-				"keyword":"MTIzNDU2",
-		}
-		
-回送：
-		{
-				"ifSuccess":true,
-				"username":"Y2hlbmdmZW5nZ3Vp",
-				"name":"6ZKf5rqQ"
-		}
-		或者
-		{
-				"ifSuccess":false,
-				"username":"",
-				"name":""
-		}
+//  原始数据
+{
+    "username":"chengfenggui",
+    "keyword":"123456",
+}
+
+//  实际传送数据
+{
+    "username":"Y2hlbmdmZW5nZ3Vp",
+    "keyword":"MTIzNDU2",
+}
 ```
 
+- 回送：
 
+```json
+//  登录成功
+{
+    "ifSuccess":true,
+    "username":"Y2hlbmdmZW5nZ3Vp",
+    "name":"6ZKf5rqQ"
+}
+//  登录失败
+{
+    "ifSuccess":false,
+    "username":"",
+    "name":""
+}
+```
 
 #### 地址管理
 
@@ -115,28 +126,27 @@ url：/api/user/address/queryall
 
 示例：
 
+- url：/api/user/address/queryall?username="Y2hlbmdmZW5nZ3Vp"
+- 附带json：无
+- 回送：
+
 ```json
-url：/api/user/address/queryall?username="Y2hlbmdmZW5nZ3Vp"
-附带json：无
-回送：
-		[
-				{
-						"id":1,
-						"receiverUsername":"Y2hlbmdmZW5nZ3Vp",
-						"province":"湖北",
-						"city":"武汉",
-						"addressDetatil":"湖北省武汉市武汉大学信息学部",
-						"addressLon":120,
-						"addressLat":35,
-						"phoneNum":18230152013
-				},
-				{
-						...
-				}
-		]
+[
+    {
+        "id":1,
+        "receiverUsername":"Y2hlbmdmZW5nZ3Vp",
+        "province":"湖北",
+        "city":"武汉",
+        "addressDetatil":"湖北省武汉市武汉大学信息学部",
+        "addressLon":120,
+        "addressLat":35,
+        "phoneNum":18230152013
+    },
+    {
+        ...
+    }
+]
 ```
-
-
 
 ##### 根据关键词搜索地址
 
@@ -150,13 +160,9 @@ url：/api/user/address/query
 
 示例：
 
-```json
-url:/api/user/address/query?search_keyword=武汉大学
-附带json：无
-回送：如前
-```
-
-
+- url:/api/user/address/query?search_keyword=武汉大学
+- 附带json：无
+- 回送：如前
 
 ##### 添加地址
 
@@ -170,26 +176,29 @@ url：/api/user/address/add
 
 示例：
 
+- url:/api/user/address/add
+- 附带json：		
+
 ```json
-url:/api/user/address/add
-附带json：
-		{
-				"id":1,
-				"receiverUsername":"Y2hlbmdmZW5nZ3Vp",
-				"province":"湖北",
-				"city":"武汉",
-				"addressDetatil":"湖北省武汉市武汉大学信息学部",
-				"addressLon":120,
-				"addressLat":35,
-				"phoneNum":18230152013
-		}
-回送：
-		{
-				"ifSucess":true
-		}
+{
+    "id":1,
+    "receiverUsername":"Y2hlbmdmZW5nZ3Vp",
+    "province":"湖北",
+    "city":"武汉",
+    "addressDetatil":"湖北省武汉市武汉大学信息学部",
+    "addressLon":120,
+    "addressLat":35,
+    "phoneNum":18230152013
+}
 ```
 
+- 回送：
 
+```json
+{
+    "ifSucess":true
+}
+```
 
 ##### 删除地址
 
@@ -201,18 +210,17 @@ url：/api/user/address/delete
 
 参数：id
 
-示例
+示例：
+
+- url:/api/user/address/delete?id=1
+- 附带json：无
+- 回送：
 
 ```json
-url:/api/user/address/delete?id=1
-附带json：无
-回送：
-		{
-				"ifSuccess":true
-		}
+{
+    "ifSuccess":true
+}
 ```
-
-
 
 ##### 编辑地址
 
@@ -224,24 +232,29 @@ url：/api/user/address/edit
 
 参数：无
 
-示例
+示例：
+
+- url:/api/user/address/edit
+- 附带json：
 
 ```json
-url:/api/user/address/edit
-附带json：
-		{
-				"id":1,
-				"receiverUsername":"Y2hlbmdmZW5nZ3Vp",
-				"province":"湖北",
-				"city":"武汉",
-				"addressDetatil":"湖北省武汉市武汉大学信息学部",
-				"addressLon":120,
-				"addressLat":35,
-				"phoneNum":18230152013
-		}
-回送：
-		{
-				"ifSuccess":true
-		}
+{
+    "id":1,
+    "receiverUsername":"Y2hlbmdmZW5nZ3Vp",
+    "province":"湖北",
+    "city":"武汉",
+    "addressDetatil":"湖北省武汉市武汉大学信息学部",
+    "addressLon":120,
+    "addressLat":35,
+    "phoneNum":18230152013
+}
+```
+
+- 回送：
+
+```json
+{
+    "ifSuccess":true
+}
 ```
 
